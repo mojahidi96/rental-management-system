@@ -1,14 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand mrgn" href="#">RENTAL MANAGEMENT SYSTEM</a>
+  <a class="navbar-brand mrgn" href="#">{{constant.title}}</a>
   <ul id="nav" class="navbar-nav">
-    <li><a href="#" class="navbar-toggler">Select Location
-      <a class="arrow-down"></a>
-    </a>
+    <li><a href="#" class="navbar-toggler">{{constant.selectLocation}}
+        <a class="arrow-down"></a>
+      </a>
       <ul>
-        <li class="border-top border-secondary" *ngFor="let location of locations" (mouseenter)="branches = null" (click)="setBranch(location)">
+        <li class="border-top border-secondary" *ngFor="let location of locations" (mouseenter)="branches = null"
+          (click)="setBranch(location)">
           <a>{{location.name}} {{location.branches?.length>0?'»':''}} </a>
           <ul>
-            <li class="border-top border-secondary" *ngFor="let branch of branches" (click)="setCategories(branch)"><a>{{branch.name}}</a></li>
+            <li class="border-top border-secondary" *ngFor="let branch of branches" (click)="setCategories(branch)">
+              <a>{{branch.name}}</a></li>
           </ul>
         </li>
       </ul>
@@ -21,7 +23,7 @@
 
   <nav aria-label="breadcrumb" *ngIf="branch?.name">
     <ol class="breadcrumb mrgn-top">
-      <li class="breadcrumb-item" [ngClass]="{'active':branch?.name}">
+      <li class="breadcrumb-item cursor-pointer" [ngClass]="{'active':branch?.name}">
         <a href="#" (click)="goToCategory()">{{branch?.name}}</a>
       </li>
       <li class="breadcrumb-item" [ngClass]="{'active':category?.name}" *ngIf="category?.name" aria-current="page">
@@ -32,7 +34,11 @@
   <ng-container *ngIf="!category">
     <app-categories [branch]="branch" (subCategoriesEven)="setSubCategories($event)"></app-categories>
   </ng-container>
-  <ng-container>
-    <app-sub-categories [category]="category"></app-sub-categories>
-  </ng-container>
+
+  <app-sub-categories [category]="category"></app-sub-categories>
+
+  <div *ngIf="isOnHomePage" class="text-center text-muted mrgn-top-2">
+    <h3>{{constant.welcomeMsg}}</h3>
+    <h4>{{constant.subTitle}}</h4>
+  </div>  
 </div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { constant } from './app.constant';
 import { catalogs } from './mocked-catalog'
 
 @Component({
@@ -7,33 +8,34 @@ import { catalogs } from './mocked-catalog'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   locations: any;
   branches: any;
-  imagePath: string = '../assets/category/'
+  constant: any = constant;
   branch: any;
   category: any;
+  isOnHomePage: boolean = true;
 
   ngOnInit() {
-    console.log(catalogs)
+    this.isOnHomePage = true;
     this.locations = catalogs.data.locations;
+
   }
 
   setBranch(location: any) {
-    console.log(location)
     if (location.branches) {
       this.branches = location.branches;
     }
   }
 
   setCategories(branch: any) {
-    console.log(branch)
     if (branch.categories) {
+      this.isOnHomePage = false;
       this.branch = branch;
     }
   }
 
   setSubCategories(category: any) {
-    console.log(category)
     this.category = category;
     if (category.subcategories) {
       this.category.subcategories = category.subcategories.filter((subCategory: any) => subCategory.name !== 'NA');
