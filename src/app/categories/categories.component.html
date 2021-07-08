@@ -1,0 +1,12 @@
+<div class="row card-group">
+    <div class="col-3 p-2" *ngFor="let category of branch?.categories">
+        <div class="card" style="cursor: pointer;" (click)="setSubCategories(category)">
+            <div class="card-body">
+                <img class="card-img-top" style="width:9rem" [src]="imagePath+category.image" alt="Card image cap">
+            </div>
+            <div class="card-footer text-white text-center bg-primary border-success"                >
+                {{category.name}} <a class="arrow-down rotate"></a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="row card-group" *ngIf="category?.subcategories">
+    <div class="col-3 p-2" *ngFor="let subcategory of category?.subcategories">
+        <div class="card text-center">
+            <div class="card-body">
+                <img class="card-img-top" style="width:9rem" [src]="imagePath+'subcategory/'+subcategory.image"
+                    alt="Card image cap">
+            </div>
+            <div class="card-footer text-center text-white bg-primary border-success">
+                {{subcategory.name}}
+            </div>
+        </div>
+    </div>
+</div>
